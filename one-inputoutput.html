@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 INPUT 1 OUTPUT TEMPLATE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <style>
+        body {
+            cursor: url("https://cdn.pixabay.com/photo/2013/07/13/10/27/arrow-157245_640.png"), auto;
+            background-color: #ededed;
+            color: blue;
+            margin-left: 20vw;
+        }
+    
+        h1 {
+            font-family: "Archivo Black", serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 10vw;
+            margin-top: 3vw;
+            line-height: 8vw;
+        }
+
+        h2 {
+            font-family: "Pixelify Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 550;
+            font-size: 4vw;
+            margin-top: -5vw;
+            width: 60vw;
+            line-height: 3.5vw;
+        }
+
+        /* STYLE FOR THE INPUT FIELD */
+        #charInput {
+            font-family: "Archivo Black", serif;
+            font-size: 2vw;
+            
+        }
+
+        /* STYLE FOR THE SUBMIT BUTTON */
+        #submitButton {
+            font-family: "Pixelify Sans", serif;
+            font-optical-sizing: auto;
+            font-weight: 450;
+            font-style: normal;
+            font-size: 2vw;
+
+        }
+
+        /* STYLE FOR THE IMAGE */
+        #displayedImage {
+            display: none; /* This line is mandatory */
+            width: 25vw;
+            height: auto;
+            margin-top: 4vw;
+            box-shadow: 0vw -2.5vw blue;
+            border: 0.25vw solid black;
+
+
+
+        }
+    </style>
+</head>
+<body>
+    <h1>LETTER INDEX</h1>
+    <h2>Type a letter into the text prompt for a surprise! :-)</h2>
+    
+    <!-- INPUT FIELD FOR 1 CHARACTER -->
+    <input type="text" id="charInput" maxlength="1">
+
+    <!-- BUTTON TO DISPLAY IMAGE -->
+    <button onclick="displayImage()" id="submitButton">Enter</button>
+
+    <!-- IMAGE TO DISPLAY -->
+    <img id="displayedImage" src="" alt="Displayed Image">
+
+
+    <!-- Image Display Script Below -->
+    <script>
+        // Array of images
+        // DIRECTIONS: UPDATE THE URLS WITH THE RELATIVE LINKS OF YOUR IMAGES
+        const images = [
+            "https://media.tenor.com/QR13ZCsRwAMAAAAM/letter-a-dancing.gif", //A
+            "https://media.tenor.com/a8uOM0SoMioAAAAM/letter-b-dancing.gif", //B
+            "https://media.tenor.com/dvBBR8Ls2cUAAAAM/letter-c-dancing.gif", //C
+            "https://media.tenor.com/buIDOiU6mNIAAAAM/letter.gif", //D
+            "https://media.tenor.com/GmAoEwcSDYgAAAAM/letter-e.gif", //E
+            "https://media.tenor.com/DPfEX5kb9vMAAAAM/letter-f.gif", //F
+            "https://media.tenor.com/A7_t9hhAnMEAAAAM/g-letter-dance.gif", //G
+            "https://media1.tenor.com/m/pJtqbgptY-YAAAAC/letter-h.gif", //H
+            "https://media.tenor.com/RKDUwq4WJjcAAAAM/my-letter-i.gif", //I
+            "https://media.tenor.com/ozO3oqAAGYkAAAAM/letter-j-dance.gif", //J
+            "https://media.tenor.com/g_tA5v39r2UAAAAM/letter-k.gif", //K
+            "https://media.tenor.com/FnFH6kxGLbUAAAAM/red-alphabet-letter-dancing-letter-l.gif", //L
+            "https://media.tenor.com/dpiWavHeCpMAAAAM/letter-m-dance.gif", //M
+            "https://media.tenor.com/2YSqoqffc2sAAAAM/letter-n.gif", //N
+            "https://media.tenor.com/4K7E9CygVz0AAAAM/letter-o.gif", //O
+            "https://media.tenor.com/3QnrJ4JB_0sAAAAM/letter-p.gif", //P
+            "https://media.tenor.com/AotAp1e8aGoAAAAM/letter-q.gif", //Q
+            "https://media.tenor.com/BhUGJxnbR48AAAAM/letter-r.gif", //R
+            "https://media.tenor.com/f1UsQw-PH7MAAAAM/letters.gif", //S
+            "https://media.tenor.com/iIIgGxa2t1IAAAAM/letter-t.gif", //T
+            "https://media.tenor.com/dtp3vXwTqlYAAAAM/letter-u.gif", //U
+            "https://media.tenor.com/yEhrDj0XMmQAAAAM/letter-v.gif", //V
+            "https://www.troublefreepool.com/media/letter-w-gif.213697/full", //W
+            "https://media.tenor.com/OdB60pI5DO4AAAAM/letter-x.gif", //X
+            "https://via.placeholder.com/300/FF00FF/FFFFFF?text=Y", //Y
+            "https://media.tenor.com/VIyHl5AXdKgAAAAM/letter-z.gif"  //Z
+        ];
+
+        function displayImage() {
+            const input = document.getElementById("charInput").value.toUpperCase();
+            const imgElement = document.getElementById("displayedImage");
+            
+            // Assign an image based on character (A-Z)
+            const index = input.charCodeAt(0) - 65; // 'A' is 65 in ASCII
+            if (index >= 0 && index < images.length) {
+                imgElement.src = images[index];
+                imgElement.style.display = "block";
+            } else {
+                /* 
+                alert("Please enter a letter between A and Z.");
+                imgElement.style.display = "none";
+                */
+
+                // IF INVALID INPUT IS ENTERED, DISPLAY ALTERNATE IMAGE
+                imgElement.src = "https://media.tenor.com/8RJKhECu2uoAAAAM/question-mark.gif"
+                imgElement.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
